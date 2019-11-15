@@ -1,5 +1,5 @@
 <template>
-  <section>
+  <div>
     <p class="content">
       <b>Palavras Chaves:</b>
     </p>
@@ -11,25 +11,24 @@
       <b-checkbox
         v-for="(palavra, index) in palavras_chave"
         v-model="palavras_chave_selecionadas"
-        :native-value="palavra"
+        :native-value="palavra.palavra"
         :key="index"
-      >{{palavra}}</b-checkbox>
+      >{{palavra.palavra}}</b-checkbox>
 
       <p class="content">
         <b>palavras-chave selecionadas:</b>
         {{ palavras_chave_selecionadas }}
       </p>
     </div>
-  </section>
+  </div>
 </template>
 
 <script>
 export default {
   name: "PalavrasChave",
-  props: ["palavras_chave", "addPalavra"],
+  props: ["palavras_chave"],
   data() {
     return {
-      palavras: this.palavras_chave,
       palavras_chave_selecionadas: []
     };
   },
@@ -42,7 +41,7 @@ export default {
           maxlength: 40
         },
         onConfirm: value => {
-          this.$emit("add_p", value);
+          this.$emit("add-p", { palavra: value, sinonimos: [] });
         }
       });
     }

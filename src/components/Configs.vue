@@ -1,7 +1,12 @@
 <template>
-  <div>
-    <PalavrasChave v-bind:palavras_chave="palavras_chave" @add_p="handleAddPalavra" />
-    <Fontes v-bind:fontes="fontes" @add_f="handleAddFonte" />
+  <div class="container">
+    <PalavrasChave
+      v-bind:palavras_chave="palavras_chave"
+      @add-p="handleAddPalavra"
+      @slct-p="handleSlctPalavra"
+    />
+    <div class="espaco" />
+    <Fontes v-bind:fontes="fontes" @add-f="handleAddFonte" @slct-f="handleSlctFonte" />
   </div>
 </template>
 
@@ -18,14 +23,23 @@ export default {
   },
   methods: {
     handleAddFonte(fonte) {
-      this.$emit("adicionar_fonte", fonte);
+      this.$emit("adicionar-fonte", fonte);
+    },
+    handleSlctFonte(fonte) {
+      this.$emit("selecionar-fonte", fonte);
     },
     handleAddPalavra(palavra) {
-      this.$emit("adicionar_palavra_chave", palavra);
+      this.$emit("adicionar-palavra-chave", palavra);
+    },
+    handleSlctPalavra(palavra) {
+      this.$emit("selecionar-palavra-chave", palavra);
     }
   }
 };
 </script>
 
-<style>
+<style scoped>
+.espaco {
+  margin-bottom: 50px;
+}
 </style>

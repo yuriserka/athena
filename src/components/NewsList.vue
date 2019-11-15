@@ -1,7 +1,7 @@
 <template>
   <div>
     <div v-for="(news, index) in returned_news" :key="index">
-      <News news="news" />
+      <News v-bind:news="news" />
     </div>
   </div>
 </template>
@@ -14,16 +14,21 @@ export default {
   components: {
     News
   },
-  props: ["news_array"],
   data() {
     return {
+      // isso daqui vai ter q usar o news_api
       returned_news: [
         {
           id: 0,
-          title: "1"
+          title: "uma bela noticia"
         }
       ]
     };
+  },
+  methods: {
+    getNews() {
+      
+    }
   }
 };
 </script>

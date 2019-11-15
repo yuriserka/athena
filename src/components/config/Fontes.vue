@@ -1,5 +1,5 @@
 <template>
-  <section>
+  <div>
     <p class="content">
       <b>Fontes de Notícias:</b>
     </p>
@@ -9,7 +9,7 @@
     </a>
     <div class="block">
       <b-checkbox
-        v-for="(fonte,index) in fontes"
+        v-for="(fonte, index) in fontes"
         v-model="fontes_selecionadas"
         :native-value="fonte"
         :key="index"
@@ -20,7 +20,7 @@
         {{ fontes_selecionadas }}
       </p>
     </div>
-  </section>
+  </div>
 </template>
 
 <script>
@@ -40,7 +40,7 @@ export default {
           placeholder: "e.g. g1.globo.com/",
           maxlength: 40
         },
-        onConfirm: value => this.$emit("add_f", value)
+        onConfirm: value => this.$emit("add-f", value)
       });
     }
   }
