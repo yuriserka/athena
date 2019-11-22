@@ -4,16 +4,19 @@
     <b-loading :is-full-page="isFullPage" :active.sync="isLoading" :can-cancel="false"></b-loading>
     <SubHeader />
     <Configs
-      v-bind:palavras_chave="palavras_chave"
-      v-bind:fontes="fontes"
+      :palavras_chave="palavras_chave"
+      :fontes="fontes"
       @adicionar-palavra-chave="handleAddPalavra"
-      @selecionar-palavra-chave="handleSelecionarPalavraChave"
+      @selecionar-palavra-chave="handleSlctPalavra"
       @adicionar-fonte="handleAddFonte"
-      @selecionar-fonte="handleSelecionarFonte"
+      @selecionar-fonte="handleSlctFonte"
     />
     <div class="container">
       <br />
-      <b-button type="okToSearch ? is-success : is-danger" disabled>realizar busca</b-button>
+      <b-button
+        :class="okToSearch ? 'is-success' : 'is-danger'"
+        :disabled="!okToSearch"
+      >Realizar Busca</b-button>
       <br />
       <b-button
         v-if="noticias_selecionadas.length > 0"
@@ -51,33 +54,43 @@ export default {
       fontes: [],
       palavras_chave: [],
 
-      palavras_chave_selecionadas: ["aa"],
-      fontes_selecionadas: ["a", "b"],
+      palavras_chave_selecionadas: [],
+      fontes_selecionadas: [],
       noticias_selecionadas: []
+    };
+  },
+  computed: {
+    okToSearch() {
+      return (
+        this.palavras_chave_selecionadas.length > 0 &&
+        this.fontes_selecionadas.length > 0
+      );
+    }
+  },
+  provide() {
+    return {
+      getPalavrasChaveSelecionadas: this.palavras_chave_selecionadas,
+      getFontesSelecionadas: this.fontes_selecionadas,
+      getFontes: this.fontes,
+      getPalavrasChave: this.palavras_chave
     };
   },
   methods: {
     handleAddPalavra(palavra_chave) {
       this.palavras_chave.push(palavra_chave);
     },
-    handleSelecionarPalavraChave(palavra_chave) {
-      this.palavras_chave_selecionadas.push(palavra_chave);
+    handleSlctPalavra(palavras_selecionadas) {
+      this.palavras_chave_selecionadas = palavras_selecionadas;
     },
     handleAddFonte(fonte) {
       this.fontes.push(fonte);
     },
-    handleSelecionarFonte(fonte) {
-      this.fontes_selecionadas.push(fonte);
+    handleSlctFonte(fontes_selecionadas) {
+      this.fontes_selecionadas = fontes_selecionadas;
     },
     getConfigInfo() {
       this.fontes = config.fontes_de_noticia;
       this.palavras_chave = config.palavras_chave;
-    },
-    okToSearch() {
-      return (
-        this.palavras_chave_selecionadas.length >= 0 &&
-        this.fontes_selecionadas.length >= 0
-      );
     }
   },
   beforeMount() {

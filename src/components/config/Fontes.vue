@@ -4,20 +4,21 @@
       <b>Fontes de Notícias:</b>
     </p>
     <b-icon pack="fas" icon="info-circle" size="is-small"></b-icon>Você também pode adicionar uma fonte de notícias temporária.
-    <a @click="addFonteNoticia">
+    <a @click="add">
       <b-icon pack="fas" icon="plus-square" size="is-small"></b-icon>
     </a>
     <div class="block">
       <b-checkbox
         v-for="(fonte, index) in fontes"
-        v-model="fontes_selecionadas"
+        @change.native="select"
+        v-model="selecionadas"
         :native-value="fonte"
         :key="index"
       >{{fonte}}</b-checkbox>
 
       <p class="content">
         <b>fontes selecionadas:</b>
-        {{ fontes_selecionadas }}
+        {{ selecionadas }}
       </p>
     </div>
   </div>
@@ -29,11 +30,11 @@ export default {
   props: ["fontes"],
   data() {
     return {
-      fontes_selecionadas: []
+      selecionadas: []
     };
   },
   methods: {
-    addFonteNoticia() {
+    add() {
       this.$buefy.dialog.prompt({
         message: `Digite a nova fonte de notícias à ser incluída`,
         inputAttrs: {
@@ -42,6 +43,9 @@ export default {
         },
         onConfirm: value => this.$emit("add-f", value)
       });
+    },
+    select() {
+      this.$emit("slct-f", this.selecionadas);
     }
   }
 };
