@@ -16,7 +16,7 @@ router.get('/', async (req, res) => {
       domains: fontes,
       sort_by: 'relevancy',
     })
-    data.push({word: palavras[i], noticias: x.articles})
+    data.push({ word: palavras[i], noticias: x.articles })
   }
   res.json(data)
 })

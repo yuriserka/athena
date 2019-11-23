@@ -18,6 +18,43 @@ Em seguida, navegue até a pasta athena:
 cd athena
 ```
 
+## Para desenvolvimento
+
+Inicie o servidor:
+
+```
+cd api
+yarn install
+yarn dev
+```
+
+Inicie o cliente:
+
+```
+cd front
+yarn install
+yarn serve 
+```
+
+## Para Simular a versão final
+
+Gere a versão de distribuição do cliente:
+
+```
+cd front
+yarn install
+yarn build
+```
+
+Inicie o servidor que irá servir estáticamente os arquivos gerados:
+
+```
+cd api
+yarn install
+yarn start 
+```
+
+# TODO(Docker)
 Feito isto, crie a imagem do docker
 
 ```
