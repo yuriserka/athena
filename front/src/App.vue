@@ -11,29 +11,27 @@
       @adicionar-fonte="handleAddFonte"
       @selecionar-fonte="handleSlctFonte"
     />
+    <NewsList
+      @selecionar-noticia="handleSlctNoticia"
+      @limpar-noticias-selecionadas="handleClearNoticias"
+      :fontes_selecionadas="fontes_selecionadas"
+      :palavras_selecionadas="palavras_chave_selecionadas"
+    />
+    <br />
     <div class="container">
-      <br />
-      <b-button
-        :class="okToSearch ? 'is-success' : 'is-danger'"
-        :disabled="!okToSearch"
-      >Realizar Busca</b-button>
-      <br />
       <b-button
         v-if="noticias_selecionadas.length > 0"
         class="bdbutton"
-        @click="armazenarNoticia"
         type="is-warning"
-        outlined
-      >enviar notícias selecionados ao banco de dados</b-button>
-      <br />
-      <br />
+      >Enviar notícias selecionadas ao banco de dados</b-button>
     </div>
-    <NewsList />
+    <Footer />
   </div>
 </template>
 
 <script>
 import Header from "./components/Header";
+import Footer from "./components/Footer";
 import SubHeader from "./components/SubHeader";
 import Configs from "./components/Configs";
 import NewsList from "./components/NewsList";
@@ -45,7 +43,8 @@ export default {
     Header,
     SubHeader,
     Configs,
-    NewsList
+    NewsList,
+    Footer
   },
   data() {
     return {
@@ -58,14 +57,6 @@ export default {
       fontes_selecionadas: [],
       noticias_selecionadas: []
     };
-  },
-  computed: {
-    okToSearch() {
-      return (
-        this.palavras_chave_selecionadas.length > 0 &&
-        this.fontes_selecionadas.length > 0
-      );
-    }
   },
   provide() {
     return {
@@ -87,6 +78,12 @@ export default {
     },
     handleSlctFonte(fontes_selecionadas) {
       this.fontes_selecionadas = fontes_selecionadas;
+    },
+    handleSlctNoticia(noticias_selecionadas) {
+      this.noticias_selecionadas = noticias_selecionadas;
+    },
+    handleClearNoticias() {
+      this.noticias_selecionadas = [];
     },
     getConfigInfo() {
       this.fontes = config.fontes_de_noticia;

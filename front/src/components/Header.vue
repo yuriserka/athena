@@ -6,12 +6,9 @@
       </div>
       <div id="navMenuColorblack-example" class="navbar-menu">
         <div class="navbar-start">
-          <a class="navbar-item is-primary" href="/">inicio</a>
           <div class="navbar-item has-dropdown is-hoverable">
             <a class="navbar-link" href="/">busca</a>
             <div class="navbar-dropdown">
-              <a class="navbar-item" href="/">realizar busca</a>
-              <hr class="navbar-divider" />
               <a
                 class="navbar-item"
                 href="javascript:void(0);"
@@ -25,7 +22,7 @@
           <div class="navbar-item">
             <div class="field is-grouped">
               <p class="control">
-                <a href="https://github.com/yuriserka/sbzada">
+                <a href="https://github.com/yuriserka/athena">
                   <i class="fab fa-github"></i>
                 </a>
               </p>
