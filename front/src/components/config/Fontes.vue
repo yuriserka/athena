@@ -5,7 +5,7 @@
     </p>
     <b-icon pack="fas" icon="info-circle" size="is-small"></b-icon>Você também pode adicionar uma fonte de notícias temporária.
     <a @click="add">
-      <b-icon pack="fas" icon="plus-square" size="is-small"></b-icon>
+      <b-icon pack="fas" icon="plus-square" size="is-small" title="Clique para dicionar fonte temporária."></b-icon>
     </a>
     <div class="block">
       <b-checkbox

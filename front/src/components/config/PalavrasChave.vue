@@ -5,7 +5,7 @@
     </p>
     <b-icon pack="fas" icon="info-circle" size="is-small"></b-icon>Você também pode adicionar uma palavra chave temporária.
     <a @click="isCardModalActive = true">
-      <b-icon pack="fas" icon="plus-square" size="is-small"></b-icon>
+      <b-icon pack="fas" icon="plus-square" size="is-small" title="Clique para dicionar palavra chave temporária."></b-icon>
     </a>
     <section>
       <b-modal :active.sync="isCardModalActive" :width="640">
