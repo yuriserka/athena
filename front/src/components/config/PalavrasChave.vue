@@ -26,7 +26,7 @@
             </b-field>
           </section>
           <footer class="modal-card-foot">
-            <button class="button is-primary" @click="add" type="submit">Adicionar</button>
+            <button class="button is-primary" @click="add" type="submit" disabled="nova_palavra.length">Adicionar</button>
             <!-- TODO, acho q seria interessante uma forma de salvar ou editar as palavras_chave padrão -->
             <!-- <button class="button is-primary" @click="edit" type="submit">Salvar</button> -->
           </footer>
