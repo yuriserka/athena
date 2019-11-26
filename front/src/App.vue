@@ -60,10 +60,10 @@ export default {
   },
   provide() {
     return {
-      getPalavrasChaveSelecionadas: this.palavras_chave_selecionadas,
+      getAddPalavrasChaveSelecionadas: this.palavras_chave_selecionadas,
       getFontesSelecionadas: this.fontes_selecionadas,
       getFontes: this.fontes,
-      getPalavrasChave: this.palavras_chave
+      getAddPalavrasChave: this.palavras_chave
     };
   },
   methods: {

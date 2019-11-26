@@ -10,6 +10,7 @@
     <a @click="rmv">
       <b-icon pack="fas" icon="minus-square" size="is-small" title="Clique para remover fonte." style="color:red;"></b-icon>      
     </a>
+    <br/><br/>
 
     <div class="block">
       <b-checkbox

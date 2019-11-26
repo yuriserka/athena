@@ -1,24 +1,28 @@
 <template>
   <div class="container">
-    <PalavrasChave
+    <AddPalavrasChave
       :palavras_chave="palavras_chave"
       @add-p="handleAddPalavra"
       @slct-p="handleSlctPalavra"
     />
     <div class="espaco" />
-    <Fontes :fontes="fontes" @add-f="handleAddFonte" @slct-f="handleSlctFonte" />
+    <Fontes 
+      :fontes="fontes" 
+      @add-f="handleAddFonte" 
+      @slct-f="handleSlctFonte"
+    />
   </div>
 </template>
 
 <script>
-import PalavrasChave from "./config/PalavrasChave";
+import AddPalavrasChave from "./config/AddPalavrasChave";
 import Fontes from "./config/Fontes";
 
 export default {
   name: "Configs",
   props: ["palavras_chave", "fontes"],
   components: {
-    PalavrasChave,
+    AddPalavrasChave,
     Fontes
   },
   methods: {
