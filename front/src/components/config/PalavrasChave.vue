@@ -98,13 +98,29 @@
         v-model="selecionadas"
         :native-value="palavra.palavra"
         :key="index"
-      >{{palavra.palavra}}</b-checkbox>
+      >{{palavra.palavra}}
+      </b-checkbox>
+
+      <b-button 
+        id="botao1"
+        type="is-success"
+        class="is-small"
+        @click="selectAll">
+      </b-button>
+
+      <b-button
+        id="botao2"
+        type="is-danger"
+        class="is-small"
+        @click="unSelectAll">
+      </b-button>
 
       <p class="content">
         <b>palavras-chave selecionadas:</b>
         {{ selecionadas }}
       </p>
     </div>
+
   </div>
 </template>
 
@@ -148,10 +164,30 @@ export default {
       this.select();
       this.selecionadas_para_remover = [];
       this.modalRmvPalavra = false;
-    }
+    },
+    selectAll() {      
+      this.selecionadas = this.palavras_chave.map(({palavra}) => palavra)
+      this.select()
+    },
+    unSelectAll() {
+      this.selecionadas = []
+      this.select()
+    },
   }
 };
 </script>
 
 <style>
+
+#botao1 {
+    margin-left: 10px;
+    margin-right: 10px;
+    border: 5px outset #23d160;
+    border-radius: 50%;
+}
+#botao2 {
+    margin-right: 10px;
+    border: 5px outset #ff3860;
+    border-radius: 50%;
+}
 </style> 
