@@ -7,8 +7,10 @@
       :palavras_chave="palavras_chave"
       :fontes="fontes"
       @adicionar-palavra-chave="handleAddPalavra"
+      @remover-palavra-chave="handleRmvPalavra"
       @selecionar-palavra-chave="handleSlctPalavra"
       @adicionar-fonte="handleAddFonte"
+      @remover-fonte="handleRmvFonte"
       @selecionar-fonte="handleSlctFonte"
     />
     <NewsList
@@ -18,13 +20,15 @@
       :palavras_selecionadas="palavras_chave_selecionadas"
     />
     <br />
-    <div class="container">
+    <div style="text-align: center;">
       <b-button
         v-if="noticias_selecionadas.length > 0"
-        class="bdbutton"
         type="is-warning"
       >Enviar notícias selecionadas ao banco de dados</b-button>
     </div>
+    <br/>
+    <br/>
+    <br/>
     <Footer />
   </div>
 </template>
@@ -70,11 +74,21 @@ export default {
     handleAddPalavra(palavra_chave) {
       this.palavras_chave.push(palavra_chave);
     },
+    handleRmvPalavra(palavras_chave_selecionadas) {
+      this.palavras_chave = this.palavras_chave.filter(
+        keyword => !palavras_chave_selecionadas.includes(keyword.palavra)
+      );
+    },
     handleSlctPalavra(palavras_selecionadas) {
       this.palavras_chave_selecionadas = palavras_selecionadas;
     },
     handleAddFonte(fonte) {
       this.fontes.push(fonte);
+    },
+    handleRmvFonte(fontes_selecionadas) {
+      this.fontes = this.fontes.filter(
+        fonte => !fontes_selecionadas.includes(fonte)
+      );
     },
     handleSlctFonte(fontes_selecionadas) {
       this.fontes_selecionadas = fontes_selecionadas;
