@@ -21,6 +21,8 @@
         style="color:red;"
       ></b-icon>
     </a>
+    <br/> <br/>
+
     <section>
       <b-modal :active.sync="modalAddPalavra" :width="640">
         <section>
@@ -102,18 +104,21 @@
       </b-checkbox>
 
       <b-button 
-        id="botao1"
+        id="addAllWords"
         type="is-success"
-        class="is-small"
+        class = "top"
+        title="Adicionar todas as palvras-chave."
         @click="selectAll">
       </b-button>
 
       <b-button
-        id="botao2"
+        id="rmvAllWords"
         type="is-danger"
         class="is-small"
-        @click="unSelectAll">
+        @click="unSelectAll"
+        title="Remover todas as palvras-chave.">
       </b-button>
+      <br/> <br/>
 
       <p class="content">
         <b>palavras-chave selecionadas:</b>
@@ -179,15 +184,17 @@ export default {
 
 <style>
 
-#botao1 {
+#addAllWords {
     margin-left: 10px;
     margin-right: 10px;
     border: 5px outset #23d160;
     border-radius: 50%;
+    font-size: 0.7rem;
 }
-#botao2 {
+#rmvAllWords {
     margin-right: 10px;
     border: 5px outset #ff3860;
     border-radius: 50%;
+    font-size: 0.7rem;
 }
 </style> 

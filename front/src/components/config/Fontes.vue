@@ -121,4 +121,15 @@ export default {
 </script>
 
 <style>
-</style>
+.addAllButton {
+    margin-left: 10px;
+    margin-right: 10px;
+    border: 5px outset #23d160;
+    border-radius: 50%;
+}
+.rmvAllButton {
+    margin-right: 10px;
+    border: 5px outset #ff3860;
+    border-radius: 50%;
+}
+</style> 
