@@ -38,13 +38,16 @@
                 placeholder="entre com sinônimos separados por ','"
               />
             </b-field>
+            <b-field label="Peso">
+              <b-input type="number" v-model="peso_nova_palavra" placeholder="peso para ranqueamento" min="1" max="5" required />
+            </b-field>
           </section>
           <footer class="modal-card-foot">
             <button
               class="button is-primary"
               @click="add"
               type="submit"
-              :disabled="nova_palavra.length == 0"
+              :disabled="nova_palavra.length == 0 || peso_nova_palavra.lenght > 1 "
             >Adicionar</button>
             <!-- TODO, acho q seria interessante uma forma de salvar ou editar as palavras_chave padrão -->
             <!-- <button class="button is-primary" @click="edit" type="submit">Salvar</button> -->
@@ -72,6 +75,7 @@
                 aria-current-label="Página atual"
               >
                 <template slot-scope="props">
+                  <b-table-column field="weight" label="Pesos">{{ props.row.sinonimos }}</b-table-column>
                   <b-table-column field="keyword" label="Palavra Chave">{{ props.row.palavra }}</b-table-column>
                   <b-table-column field="Sinônimos" label="Sinônimos">{{ props.row.sinonimos }}</b-table-column>
                 </template>
@@ -115,6 +119,7 @@ export default {
   data() {
     return {
       nova_palavra: "",
+      peso_nova_palavra: "",
       nova_palavra_sinonimos: "",
       modalAddPalavra: false,
       modalRmvPalavra: false,
@@ -154,4 +159,4 @@ export default {
 </script>
 
 <style>
-</style> 
+</style>

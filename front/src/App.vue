@@ -72,11 +72,11 @@ export default {
   },
   methods: {
     handleAddPalavra(palavra_chave) {
-      this.palavras_chave.push(palavra_chave);
+      this.palavras_chave.push({ keyword: palavra_chave, weight: 0, synonyms: [] });
     },
     handleRmvPalavra(palavras_chave_selecionadas) {
       this.palavras_chave = this.palavras_chave.filter(
-        keyword => !palavras_chave_selecionadas.includes(keyword.palavra)
+        word => !palavras_chave_selecionadas.includes(word.keyword)
       );
     },
     handleSlctPalavra(palavras_selecionadas) {

@@ -8,19 +8,17 @@ const router = express.Router();
 
 router.get('/', async (req, res) => {
     var { fontes, palavras } = req.query;
-    palavras = palavras;
-    fontes = fontes;
     const data = [];
-    for (let i = 0; i < palavras.length; i++) {
-        const x = await news_api.v2.everything({
-            q: palavras[i],
+    for (const palavra of palavras) {
+        const news_query = await news_api.v2.everything({
+            q: palavra,
             domains: fontes,
             sort_by: 'relevancy'
         });
         data.push({
-            word: palavras[i],
-            noticias: x.articles.map(article => {
-                article.score = score_news(article, { dengue: { weight: 5 } });
+            word: Object.keys(palavra),
+            noticias: news_query.articles.map(article => {
+                article.score = score_news(article, palavra);
                 return article;
             })
         });
