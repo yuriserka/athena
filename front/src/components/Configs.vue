@@ -1,39 +1,47 @@
 <template>
   <div class="container">
-    <AddPalavrasChave
+    <PalavrasChave
       :palavras_chave="palavras_chave"
       @add-p="handleAddPalavra"
+      @rmv-p="handleRmvPalavra"
       @slct-p="handleSlctPalavra"
     />
     <div class="espaco" />
     <Fontes 
       :fontes="fontes" 
-      @add-f="handleAddFonte" 
+      @add-f="handleAddFonte"
+      @rmv-f="handleRmvFonte"
       @slct-f="handleSlctFonte"
     />
   </div>
 </template>
 
 <script>
-import AddPalavrasChave from "./config/AddPalavrasChave";
+import PalavrasChave from "./config/PalavrasChave";
 import Fontes from "./config/Fontes";
 
 export default {
   name: "Configs",
   props: ["palavras_chave", "fontes"],
   components: {
-    AddPalavrasChave,
+    PalavrasChave,
     Fontes
   },
   methods: {
     handleAddFonte(fonte) {
       this.$emit("adicionar-fonte", fonte);
     },
+    handleRmvFonte(fontes_selecionadas) {
+      this.$emit("remover-fonte", fontes_selecionadas);
+    },
     handleSlctFonte(fontes_selecionadas) {
       this.$emit("selecionar-fonte", fontes_selecionadas);
     },
     handleAddPalavra(palavra) {
       this.$emit("adicionar-palavra-chave", palavra);
+    },
+    handleRmvPalavra(palavras_selecionadas) {
+      this.$emit("remover-palavra-chave", palavras_selecionadas);
     },
     handleSlctPalavra(palavras_selecionadas) {
       this.$emit("selecionar-palavra-chave", palavras_selecionadas);
