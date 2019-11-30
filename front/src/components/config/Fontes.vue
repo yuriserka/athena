@@ -70,6 +70,23 @@
         :key="index"
       >{{fonte}}</b-checkbox>
 
+      <b-button 
+        id="addAllSrc"
+        type="is-success"
+        class = "top"
+        title="Adicionar todas as palvras-chave."
+        @click="selectAll">
+      </b-button>
+
+      <b-button
+        id="rmvAllSrc"
+        type="is-danger"
+        class="is-small"
+        @click="unSelectAll"
+        title="Remover todas as palvras-chave.">
+      </b-button>
+      <br/> <br/>
+
       <p class="content">
         <b>fontes selecionadas:</b>
         {{ selecionadas }}
@@ -115,21 +132,35 @@ export default {
       this.select();
       this.selecionadas_para_remover = [];
       this.modalRmvFonte = false;
-    }
+    },
+    selectAll() {      
+      this.selecionadas = this.fontes
+      this.select()
+    },
+    unSelectAll() {
+      this.selecionadas = []
+      this.select()
+    },
+
   }
 };
 </script>
 
 <style>
-.addAllButton {
+
+#addAllSrc {
     margin-left: 10px;
     margin-right: 10px;
     border: 5px outset #23d160;
     border-radius: 50%;
+    font-size: 0.7rem;
 }
-.rmvAllButton {
+
+#rmvAllSrc {
     margin-right: 10px;
     border: 5px outset #ff3860;
     border-radius: 50%;
+    font-size: 0.7rem;
 }
+
 </style> 
