@@ -106,7 +106,7 @@
 
       <p class="content">
         <b>palavras-chave selecionadas:</b>
-        {{ selecionadas }}
+        {{ selecionadas.join(', ') }}
       </p>
     </div>
   </div>

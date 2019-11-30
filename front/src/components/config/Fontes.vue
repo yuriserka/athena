@@ -72,7 +72,7 @@
 
       <p class="content">
         <b>fontes selecionadas:</b>
-        {{ selecionadas }}
+        {{ selecionadas.join(' | ') }}
       </p>
     </div>
   </div>
