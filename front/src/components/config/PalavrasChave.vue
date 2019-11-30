@@ -97,12 +97,12 @@
     </section>
     <div class="block">
       <b-checkbox
-        v-for="(palavra, index) in palavras_chave"
+        v-for="(_,index) in palavras_chave"
         @change.native="select"
         v-model="selecionadas"
-        :native-value="palavra.palavra"
+        :native-value="index"
         :key="index"
-      >{{palavra.palavra}}</b-checkbox>
+      >{{ index }}</b-checkbox>
 
       <p class="content">
         <b>palavras-chave selecionadas:</b>
@@ -130,11 +130,14 @@ export default {
   methods: {
     add() {
       this.$emit("add-p", {
-        palavra: this.nova_palavra,
-        sinonimos: this.nova_palavra_sinonimos.split(",").map(s => s.trim())
+        [this.nova_palavra]:{
+          weight: this.peso_nova_palavra,
+          synonyms: this.nova_palavra_sinonimos.split(",").map(s => s.trim()),
+        }
       });
       this.nova_palavra = "";
       this.nova_palavra_sinonimos = "";
+      this.peso_nova_palavra = null,
       this.modalAddPalavra = false;
     },
     select() {

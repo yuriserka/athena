@@ -55,7 +55,7 @@ export default {
       isLoading: false,
       isFullPage: true,
       fontes: [],
-      palavras_chave: [],
+      palavras_chave: {},
 
       palavras_chave_selecionadas: [],
       fontes_selecionadas: [],
@@ -72,7 +72,7 @@ export default {
   },
   methods: {
     handleAddPalavra(palavra_chave) {
-      this.palavras_chave.push({ keyword: palavra_chave, weight: 0, synonyms: [] });
+      this.palavras_chave = {...this.palavras_chave, ...palavra_chave };
     },
     handleRmvPalavra(palavras_chave_selecionadas) {
       this.palavras_chave = this.palavras_chave.filter(
