@@ -144,11 +144,6 @@ export default {
       this.$emit("slct-p", this.selecionadas);
     },
     remove() {
-      this.selecionadas_para_remover = this.selecionadas_para_remover.map(
-        el => {
-          return el.palavra;
-        }
-      );
       this.selecionadas = this.selecionadas.filter(
         keyword => !this.selecionadas_para_remover.includes(keyword)
       );

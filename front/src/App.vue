@@ -75,9 +75,9 @@ export default {
       this.palavras_chave = {...this.palavras_chave, ...palavra_chave };
     },
     handleRmvPalavra(palavras_chave_selecionadas) {
-      this.palavras_chave = this.palavras_chave.filter(
-        word => !palavras_chave_selecionadas.includes(word.keyword)
-      );
+      this.palavras_chave = Object.keys(this.palavras_chave).filter(
+        word => !palavras_chave_selecionadas.includes(word)
+      ).reduce((acc,key) => ({...acc, [key]: {...this.palavras_chave[key]}}),{});
     },
     handleSlctPalavra(palavras_selecionadas) {
       this.palavras_chave_selecionadas = palavras_selecionadas;
