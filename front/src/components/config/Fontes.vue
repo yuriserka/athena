@@ -71,8 +71,8 @@
       >{{fonte}}</b-checkbox>
 
       <p class="content">
-        <b>fontes selecionadas:</b>
-        {{ selecionadas.join(' | ') }}
+        <b>fontes selecionadas: </b>
+        {{selecionadas.map(x => "\"" + x + "\"").join(', ') }}
       </p>
     </div>
   </div>
