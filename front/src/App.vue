@@ -17,7 +17,7 @@
       @selecionar-noticia="handleSlctNoticia"
       @limpar-noticias-selecionadas="handleClearNoticias"
       :fontes_selecionadas="fontes_selecionadas"
-      :palavras_selecionadas="palavras_chave_selecionadas"
+      :palavras_selecionadas="palavras_chave_selecionadas.reduce((obj,x) => ({...obj, [x]: {...palavras_chave[x]}}),{})"
     />
     <br />
     <div style="text-align: center;">

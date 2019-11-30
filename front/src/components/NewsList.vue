@@ -90,7 +90,7 @@ export default {
   computed: {
     okToSearch() {
       return (
-        this.$props.palavras_selecionadas.length > 0 &&
+        Object.keys(this.$props.palavras_selecionadas).length > 0 &&
         this.$props.fontes_selecionadas.length > 0
       );
     },
