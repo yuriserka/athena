@@ -64,7 +64,7 @@
           <section class="modal-card-body">
             <template>
               <b-table
-                :data="palavras_chave"
+                :data="Object.keys(palavras_chave)"
                 :checked-rows.sync="selecionadas_para_remover"
                 checkable
                 paginated
@@ -75,9 +75,9 @@
                 aria-current-label="Página atual"
               >
                 <template slot-scope="props">
-                  <b-table-column field="weight" label="Pesos">{{ props.row.sinonimos }}</b-table-column>
-                  <b-table-column field="keyword" label="Palavra Chave">{{ props.row.palavra }}</b-table-column>
-                  <b-table-column field="Sinônimos" label="Sinônimos">{{ props.row.sinonimos }}</b-table-column>
+                  <b-table-column field="keyword" label="Palavra Chave">{{ props.row }}</b-table-column>
+                  <b-table-column field="weight" label="Pesos">{{ palavras_chave[props.row].weight }}</b-table-column>
+                  <b-table-column field="synonyms" label="Sinônimos">{{ palavras_chave[props.row].synonyms.join(', ') }}</b-table-column>
                 </template>
               </b-table>
             </template>

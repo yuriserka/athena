@@ -1,21 +1,21 @@
 {
-  "fontes_de_noticia": [
-    "globo.com",
-    "gazetaweb.globo.com",
-    "uol.com.br",
-    "terra.com.br",
-    "r7.com",
-    "correiobraziliense.com.br",
-    "estadao.com.br"
-  ],
-  "palavras_chave": [
-    {
-      "palavra": "dengue",
-      "sinonimos": []
-    },
-    {
-      "palavra": "zika",
-      "sinonimos": []
+    "fontes_de_noticia": [
+        "globo.com",
+        "gazetaweb.globo.com",
+        "uol.com.br",
+        "terra.com.br",
+        "r7.com",
+        "correiobraziliense.com.br",
+        "estadao.com.br"
+    ],
+    "palavras_chave": {
+        "dengue": {
+            "weight": 1,
+            "synonyms": []
+        },
+        "zika": {
+            "weight": 1,
+            "synonyms": []
+        }
     }
-  ]
 }
