@@ -11,10 +11,12 @@
   "palavras_chave": [
     {
       "palavra": "dengue",
+      "peso": 3,
       "sinonimos": []
     },
     {
       "palavra": "zika",
+      "peso": 3,
       "sinonimos": []
     }
   ]

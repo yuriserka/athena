@@ -26,9 +26,9 @@
         type="is-warning"
       >Enviar notícias selecionadas ao banco de dados</b-button>
     </div>
-    <br/>
-    <br/>
-    <br/>
+    <br />
+    <br />
+    <br />
     <Footer />
   </div>
 </template>
@@ -76,7 +76,7 @@ export default {
     },
     handleRmvPalavra(palavras_chave_selecionadas) {
       this.palavras_chave = this.palavras_chave.filter(
-        keyword => !palavras_chave_selecionadas.includes(keyword.palavra)
+        ({ palavra }) => !palavras_chave_selecionadas.includes(palavra)
       );
     },
     handleSlctPalavra(palavras_selecionadas) {

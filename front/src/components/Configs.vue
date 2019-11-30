@@ -7,8 +7,8 @@
       @slct-p="handleSlctPalavra"
     />
     <div class="espaco" />
-    <Fontes 
-      :fontes="fontes" 
+    <Fontes
+      :fontes="fontes"
       @add-f="handleAddFonte"
       @rmv-f="handleRmvFonte"
       @slct-f="handleSlctFonte"
