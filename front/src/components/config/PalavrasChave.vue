@@ -47,7 +47,7 @@
               class="button is-primary"
               @click="add"
               type="submit"
-              :disabled="nova_palavra.length == 0 || peso_nova_palavra < 1 || peso_nova_palavra > 5"
+              :disabled="nova_palavra.length === 0 || peso_nova_palavra < 1 || peso_nova_palavra > 5"
             >Adicionar</button>
             <!-- TODO, acho q seria interessante uma forma de salvar ou editar as palavras_chave padrão -->
             <!-- <button class="button is-primary" @click="edit" type="submit">Salvar</button> -->
@@ -119,7 +119,7 @@ export default {
   data() {
     return {
       nova_palavra: "",
-      peso_nova_palavra: "",
+      peso_nova_palavra: null,
       nova_palavra_sinonimos: "",
       modalAddPalavra: false,
       modalRmvPalavra: false,
