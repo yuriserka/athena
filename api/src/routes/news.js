@@ -7,18 +7,21 @@ const news_api = new NewsApi(config.news_api_key);
 const router = express.Router();
 
 router.get('/', async (req, res) => {
-    var { fontes, palavras } = req.query;
+    let { fontes, palavras } = req.query;
+    palavras = JSON.parse(palavras);
     const data = [];
-    for (const palavra of palavras) {
+    for (const palavra of Object.keys(palavras)) {
         const news_query = await news_api.v2.everything({
             q: palavra,
             domains: fontes,
             sort_by: 'relevancy'
         });
         data.push({
-            word: Object.keys(palavra),
+            word: palavra,
             noticias: news_query.articles.map(article => {
-                article.score = score_news(article, palavra);
+                article.score = score_news(article, {
+                    [palavra]: palavras[palavra]
+                });
                 return article;
             })
         });

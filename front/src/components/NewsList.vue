@@ -110,7 +110,7 @@ export default {
         .get("http://localhost:8083/api/news", {
           params: {
             fontes: this.$props.fontes_selecionadas.join(","),
-            palavras: this.$props.palavras_selecionadas
+            palavras: JSON.stringify(this.$props.palavras_selecionadas)
           }
         })
         .then(result => {
