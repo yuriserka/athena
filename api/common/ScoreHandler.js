@@ -1,6 +1,6 @@
-String.prototype.apagar =  function(c) {
-  return this.replace(c, '')
-}
+// String.prototype.apagar = function(c) {
+//     return this.replace(c, '');
+// };
 
 /**
  * @see https://stackoverflow.com/questions/4856717/javascript-equivalent-of-pythons-zip-function#7260572
@@ -41,27 +41,27 @@ function occurrences(string, subString, allowOverlapping) {
 }
 
 function setUp(article, params) {
-    // let resultado = article ? ({ title, description, content } = article) : {};
-    // if (params) {
-    //     keys = Object.keys(params);
-    //     keywords = [
-    //         ...keys,
-    //         ...keys.flatMap(e => {
-    //             res = params[e].synonyms;
-    //             return res ? res : [];
-    //         })
-    //     ];
-    //     weight = {};
-    //     // Fill weight for keywords and it' synonyms.
-    //     keys.forEach(word => {
-    //         weight[word] = params[word].weight;
-    //         const applyWeight = val => word => (weight[word] = val);
-    //         if (params[word].synonyms)
-    //             params[word].synonyms.forEach(applyWeight(weight[word]));
-    //     });
-    //     resultado = { keywords, weight, ...resultado };
-    // }
-    return [];
+    let resultado = article ? ({ title, description, content } = article) : {};
+    if (params) {
+        keys = Object.keys(params);
+        keywords = [
+            ...keys,
+            ...keys.flatMap(e => {
+                res = params[e].synonyms;
+                return res ? res : [];
+            })
+        ];
+        weight = {};
+        // Fill weight for keywords and it' synonyms.
+        keys.forEach(word => {
+            weight[word] = params[word].weight;
+            const applyWeight = val => word => (weight[word] = val);
+            if (params[word].synonyms)
+                params[word].synonyms.forEach(applyWeight(weight[word]));
+        });
+        resultado = { keywords, weight, ...resultado };
+    }
+    return resultado;
 }
 
 function getBody(article) {
@@ -78,26 +78,20 @@ function getBody(article) {
             .toLowerCase()
     );
 }
-/**
- * https://stackoverflow.com/questions/19395257/how-to-count-duplicate-value-in-an-array-in-javascript/19395302
- *
-**/
+
 function filterCount(text, keywords) {
     const count = occurrences;
     repetitions = {};
-    // process_text = text.
-    // keywords.map()
-    // keywords.forEach(
-    //     (words => key => (repetitions[key] = count(words, key))) (
-    //         text
-    //             .split(' ')
-    //             .filter(e => keywords.includes(e))
-    //             .join(' ')
-    //         // Filter article' words, based upon search parameters.
-    //     )
-    // );
-    return {};
-    return 0;
+    keywords.forEach(
+        (words => key => (repetitions[key] = count(words, key)))(
+            text
+                .split(' ')
+                .filter(e => keywords.includes(e))
+                .join(' ')
+            // Filter article' words, based upon search parameters.
+        )
+    );
+    return repetitions;
 }
 
 function score_news(article, params) {
@@ -124,12 +118,16 @@ function score_news(article, params) {
     //       a smaller score (that' the reason behind the large articleLenght
     //       number in those cases).
 
-    // score = zip(
-    //     keywords.map(word => repetitions[word]),
-    //     keywords.map(word => weight[word])
-    // ).reduce((acc, {reps, wei}) => acc + (wei / 5) * (reps / articleLenght), 0);
-    // return score;
-    return 0;
+    score = zip(
+        keywords,
+        keywords.map(word => repetitions[word]),
+        keywords.map(word => weight[word])
+    ).reduce((acc, e) => {
+        let [_, reps, wei] = e;
+        return acc + (wei / 5) * (reps / articleLenght);
+    }, 0);
+
+    return score;
 }
 
 module.exports = score_news;

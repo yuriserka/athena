@@ -29,6 +29,6 @@ router.get('/', async (req, res) => {
     res.json(data);
 });
 
-router.post('/', (req, res) => { });
+router.post('/', (req, res) => {});
 
 module.exports = router;
