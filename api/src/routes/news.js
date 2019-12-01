@@ -31,17 +31,31 @@ router.get('/', async (req, res) => {
 });
 
 router.post('/', async (req, res) => {
+    /* NOTE:
+        ao utilizar esse método, o header Authorization não é enviado
+        por motivos desconhecidos
+    axios
+        .post('http://localhost:8080/noticias',{
+            data: { ...req.body },
+            headers: {
+                Authorization: "Basic ZGV2OmFwaWtleQ==",
+                "Content-Type": "application/json"
+            }
+        }) */
     axios({
-        'method': 'post',
-        'url': 'http://localhost:8080/noticias',
-        'data': { ...req.body },
-        'headers': {
-            'Authorization': 'Basic ZGV2OmFwaWtleQ==',
+        method: 'post',
+        url: 'http://localhost:8080/noticias',
+        data: { ...req.body },
+        headers: {
+            Authorization: 'Basic ZGV2OmFwaWtleQ==',
             'Content-Type': 'application/json'
         }
     })
-        .then(result => res.json(result.data.links))
-        .catch(err => console.log(err) && res.json(err));
+        .then(result => res.json({ link: result.data.links[0].href }))
+        .catch(err => {
+            console.log(err);
+            res.json({ ...err.response.data });
+        });
 });
 
 module.exports = router;
