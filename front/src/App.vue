@@ -24,7 +24,30 @@
       <b-button
         v-if="noticias_selecionadas.length > 0"
         type="is-warning"
+        @click="enviarNoticias"
       >Enviar notícias selecionadas ao banco de dados</b-button>
+    </div>
+    <div
+      v-if="links.length > 0"
+    >
+      <h2
+            class="title is-4 is-spaced bd-anchor-title"
+      >Foram inseridas com sucesso {{links.length}}, e ocorreram {{errors}} erros</h2>
+      <b-table
+        :data="links"
+        :loading="isLoadingLinks"
+        paginated
+        :total="this.links.length"
+        :per-page="5"
+        aria-next-label="Próxima página"
+        aria-previous-label="Página anterior"
+        aria-page-label="Página"
+        aria-current-label="Página atual"
+      >
+        <template slot-scope="props">
+          <b-table-column field="link" label="Title">{{ props.row }}</b-table-column>
+        </template>
+      </b-table>
     </div>
     <br />
     <br />
@@ -34,6 +57,7 @@
 </template>
 
 <script>
+import axios from "axios";
 import Header from "./components/Header";
 import Footer from "./components/Footer";
 import SubHeader from "./components/SubHeader";
@@ -53,10 +77,13 @@ export default {
   data() {
     return {
       isLoading: false,
+      isLoadingLinks: false,
       isFullPage: true,
       fontes: [],
       palavras_chave: {},
+      errors: 0,
 
+      links: [],
       palavras_chave_selecionadas: [],
       fontes_selecionadas: [],
       noticias_selecionadas: []
@@ -102,6 +129,36 @@ export default {
     getConfigInfo() {
       this.fontes = config.fontes_de_noticia;
       this.palavras_chave = config.palavras_chave;
+    },
+    enviarNoticias(){
+      this.isLoadingLinks = true;
+
+      let news = this.noticias_selecionadas.map(news => {
+        news.source = news.source.name;
+        news.event = this.palavras_chave_selecionadas;
+        let today = new Date();
+        let date = today.getFullYear() + '-';
+        date += (today.getMonth()+1 < 10 ? '0' : '') + (today.getMonth()+1) + '-';
+        date += (today.getDate() < 10 ? '0':'') + today.getDate();
+        news.insertionDate = date;
+        [news.country,news.region,news.uf] = ['','',''];
+        return news;
+      });
+
+      this.links = [];
+      this.errors = 0;
+
+      let result = [];
+      let errs = [];
+      for(const noticia of news){
+        axios
+          .post("http://localhost:8083/api/news",{...noticia })
+          .then(res => result.push(res.data.link))
+          .catch(err => errs.push(err));
+      }
+      this.errors = errs.lenght;
+      this.isLoadingLinks = false;
+      this.links = result;
     }
   },
   beforeMount() {
