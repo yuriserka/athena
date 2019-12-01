@@ -2,10 +2,7 @@
   <section class="section">
     <div class="container">
       <h1 class="title">busca & ranqueamento</h1>
-      <p
-        data-step="2"
-        data-intro="Aqui uma breve descrição de plataforma, vamos entender tudinho!"
-      >
+      <p data-step="2" data-intro="Aqui uma breve descrição de plataforma, vamos entender tudinho!">
         A
         plataforma
         <b>Athena</b> irá buscar pelas palavras-chave selecionadas em diversas fontes

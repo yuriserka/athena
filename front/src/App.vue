@@ -26,9 +26,9 @@
         type="is-warning"
       >Enviar notícias selecionadas ao banco de dados</b-button>
     </div>
-    <br/>
-    <br/>
-    <br/>
+    <br />
+    <br />
+    <br />
     <Footer />
   </div>
 </template>

@@ -5,19 +5,14 @@
     </p>
     <b-icon pack="fas" icon="info-circle" size="is-small"></b-icon>Você também pode adicionar uma fonte de notícias temporária.
     <a @click="add">
-      <b-icon
-        pack="fas"
-        icon="plus-square"
-        size="is-small"
-        title="Clique para adicionar uma fonte temporária."
-      ></b-icon>
+      <b-icon pack="fas" icon="plus-square" size="is-small" title="Adicionar uma fonte temporária."></b-icon>
     </a>
     <a @click="modalRmvFonte = true">
       <b-icon
         pack="fas"
         icon="minus-square"
         size="is-small"
-        title="Clique para remover uma fonte temporária."
+        title="Remover uma fonte temporária."
         style="color:red;"
       ></b-icon>
     </a>
@@ -69,6 +64,28 @@
         :native-value="fonte"
         :key="index"
       >{{fonte}}</b-checkbox>
+      {{' '}}
+      <a @click="selectAll">
+        <b-icon
+          pack="fas"
+          icon="check-square"
+          size="is-medium"
+          title="Selecionar todas as fontes."
+          style="color:green;"
+        ></b-icon>
+      </a>
+
+      <a @click="unSelectAll">
+        <b-icon
+          pack="fas"
+          icon="trash"
+          size="is-medium"
+          title="Deselecionar todas as fontes."
+          style="color:red;"
+        ></b-icon>
+      </a>
+      <br />
+      <br />
 
       <p class="content">
         <b>fontes selecionadas: </b>
@@ -115,10 +132,18 @@ export default {
       this.select();
       this.selecionadas_para_remover = [];
       this.modalRmvFonte = false;
+    },
+    selectAll() {
+      this.selecionadas = this.fontes;
+      this.select();
+    },
+    unSelectAll() {
+      this.selecionadas = [];
+      this.select();
     }
   }
 };
 </script>
 
-<style>
-</style>
+<style scoped>
+</style> 

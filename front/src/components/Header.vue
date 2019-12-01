@@ -22,7 +22,7 @@
           <div class="navbar-item">
             <div class="field is-grouped">
               <p class="control">
-                <a href="https://github.com/yuriserka/athena">
+                <a href="https://github.com/yuriserka/athena" target="_blank">
                   <i class="fab fa-github"></i>
                 </a>
               </p>
