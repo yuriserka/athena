@@ -32,9 +32,9 @@
     >
       <h2
             class="title is-4 is-spaced bd-anchor-title"
-      >Foram inseridas com sucesso {{links.length}}, e ocorreram {{errors}} erros</h2>
+      > {{links.length}} notícias inseridas com sucesso{{errors > 0 ? `, mas ocorreram ${errors} erros` : ''}}</h2>
       <b-table
-        :data="links"
+        :data="links.map((e,idx)=>{return {title:noticias_selecionadas[idx].title,link:e}})"
         :loading="isLoadingLinks"
         paginated
         :total="this.links.length"
@@ -45,7 +45,7 @@
         aria-current-label="Página atual"
       >
         <template slot-scope="props">
-          <b-table-column field="link" label="Title">{{ props.row }}</b-table-column>
+          <b-table-column field="link" label="Links"><a :href="props.row.link" target="_blank">{{props.row.title}}</a></b-table-column>
         </template>
       </b-table>
     </div>
@@ -154,7 +154,7 @@ export default {
         axios
           .post("http://localhost:8083/api/news",{...noticia })
           .then(res => result.push(res.data.link))
-          .catch(err => errs.push(err));
+          .catch(err => {errs.push(err);result.push('fail')});
       }
       this.errors = errs.lenght;
       this.isLoadingLinks = false;
