@@ -1,6 +1,6 @@
 <template>
   <div>
-    <div id="realizarBusca">
+    <div id="realizarBusca" class="container">
       <br />
       <b-button
         :class="okToSearch ? 'is-success' : 'is-danger'"
@@ -8,7 +8,7 @@
         @click="buscarNoticias"
       >Realizar Busca</b-button>
     </div>
-    <b-loading :active.sync="isLoading" :can-cancel="false"></b-loading>
+    <b-loading :active.sync="isLoading" :can-cancel="true"></b-loading>
     <div v-if="ok">
       <section class="section">
         <div class="container">
@@ -143,6 +143,7 @@ export default {
 
 <style>
 #realizarBusca {
-  margin-left: 10%;
+  padding-left: 10%;
+  padding-right: 10%;
 }
 </style>
