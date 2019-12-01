@@ -45,10 +45,6 @@
 
               <b-table-column field="descricao" label="Descrição">{{ props.row.description }}</b-table-column>
 
-              <b-table-column field="score" label="Score" numeric sortable>
-                <span class="tag" :class="type(props.row.score)">{{ props.row.score }}</span>
-              </b-table-column>
-
               <b-table-column field="conteudo" label="Conteúdo">
                 {{ props.row.content | truncate(260)}}
                 <br />
@@ -60,6 +56,10 @@
                 label="Publicado em"
                 centered
               >{{ props.row.publishedAt ? new Date(props.row.publishedAt).toLocaleDateString() : '' }}</b-table-column>
+
+              <b-table-column field="score" label="Score" numeric sortable>
+                <span class="tag" :class="type(props.row.score)">{{ props.row.score.toFixed(3) }}</span>
+              </b-table-column>
             </template>
           </b-table>
         </template>
