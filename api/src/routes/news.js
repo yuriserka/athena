@@ -30,6 +30,29 @@ router.get('/', async (req, res) => {
     res.json(data);
 });
 
+router.delete('/', async (req, res) => {
+    let result = [];
+    await axios({
+        method: 'get',
+        url: 'http://localhost:8080/noticias'
+    })
+        .then(x => {
+            result = x.data.data.map(x => x.id);
+        })
+        .catch(err => console.log(err));
+    for (const id of result) {
+        await axios({
+            method: 'delete',
+            url: 'http://localhost:8080/noticias/' + id,
+            headers: {
+                Authorization: 'Basic ZGV2OmFwaWtleQ==',
+                'Content-Type': 'application/json'
+            }
+        });
+    }
+    res.json('fim');
+});
+
 router.post('/', async (req, res) => {
     /* NOTE:
         ao utilizar esse método, o header Authorization não é enviado
