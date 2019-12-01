@@ -1,6 +1,6 @@
 <template>
   <div>
-    <div class="container">
+    <div id="realizarBusca">
       <br />
       <b-button
         :class="okToSearch ? 'is-success' : 'is-danger'"
@@ -141,5 +141,8 @@ export default {
 };
 </script>
 
-<style scoped>
+<style>
+#realizarBusca {
+  margin-left: 10%;
+}
 </style>
