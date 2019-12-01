@@ -40,16 +40,8 @@ router.post('/', async (req, res) => {
             'Content-Type': 'application/json'
         }
     })
-    // axios
-    //     .post('http://localhost:8080/noticias', {
-    //         data: { ...req.body },
-    //         headers: {
-    //             "Authorization": 'Basic ZGV2OmFwaWtleQ==',
-    //             'Content-Type': 'application/json'
-    //         }
-    //     })
-        .then(result => res.json(result.links))
-        .catch(err => console.log(err));
+        .then(result => res.json(result.data.links))
+        .catch(err => console.log(err) && res.json(err));
 });
 
 module.exports = router;
