@@ -215,7 +215,7 @@ export default {
       this.modalRmvPalavra = false;
     },
     selectAll() {
-      this.selecionadas = this.palavras_chave;
+      this.selecionadas = Object.keys(this.palavras_chave);
       this.select();
     },
     unSelectAll() {
