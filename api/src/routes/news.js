@@ -2,6 +2,7 @@ const express = require('express');
 const NewsApi = require('newsapi');
 const config = require('../../common/config.json');
 const score_news = require('../../common/ScoreHandler');
+const axios = require('axios');
 
 const news_api = new NewsApi(config.news_api_key);
 const router = express.Router();
@@ -29,6 +30,26 @@ router.get('/', async (req, res) => {
     res.json(data);
 });
 
-router.post('/', (req, res) => {});
+router.post('/', async (req, res) => {
+    axios({
+        'method': 'post',
+        'url': 'http://localhost:8080/noticias',
+        'data': { ...req.body },
+        'headers': {
+            'Authorization': 'Basic ZGV2OmFwaWtleQ==',
+            'Content-Type': 'application/json'
+        }
+    })
+    // axios
+    //     .post('http://localhost:8080/noticias', {
+    //         data: { ...req.body },
+    //         headers: {
+    //             "Authorization": 'Basic ZGV2OmFwaWtleQ==',
+    //             'Content-Type': 'application/json'
+    //         }
+    //     })
+        .then(result => res.json(result.links))
+        .catch(err => console.log(err));
+});
 
 module.exports = router;
