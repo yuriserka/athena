@@ -140,9 +140,8 @@
       <br />
       <br />
 
-      <p class="content">
+      <p class="content" v-if="showList">
         <b>palavras-chave selecionadas:</b>
-        <!-- INCOMING {{ mostrar_nome_selecionadas }} -->
         {{ selecionadas.join(', ') }}
       </p>
     </div>
@@ -152,7 +151,7 @@
 <script>
 export default {
   name: "PalavrasChave",
-  props: ["palavras_chave"],
+  props: ["palavras_chave","showList"],
   data() {
     return {
       nova_palavra: {
