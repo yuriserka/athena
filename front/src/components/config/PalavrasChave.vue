@@ -192,7 +192,7 @@ export default {
           synonyms: sinonimos,
         }
       });
-      this.nova_palavra = this.default_nova_palavra;
+      this.nova_palavra = {...this.default_nova_palavra};
       this.modalAddPalavra = false;
     },
     select() {
