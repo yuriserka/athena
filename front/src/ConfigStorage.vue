@@ -8,7 +8,6 @@
             <i><p><strong>Atenção</strong>: Por usar o navegador como local de armazenamento,
                 limpar os dados do navegador limpa a lista de configurações</p></i>
             <br/>
-
             <PalavrasChave
                 :palavras_chave="palavras_chave"
                 @add-p="handleAddPalavra"
@@ -45,6 +44,11 @@
                 :class="'is-success'"
                 @click="setConfigInfo"
             >Atualizar</b-button>
+            <b-button
+                style="margin-left: 5em;"
+                :class="'is-danger'"
+                @click="clearConfigInfo"
+            >Apagar Todos</b-button>
         </div>
     </div>
 </div>
@@ -65,30 +69,37 @@ export default {
         return {
             fontes: [],
             palavras_chave: {},
-
+            temp1: [],
+            temp2: [],
             palavras_chave_selecionadas: [],
             fontes_selecionadas: [],
         }
     },
     computed: {
         okToSearch() {
-            return (
-                this.palavras_chave_selecionadas.length > 0 ||
-                this.fontes_selecionadas.length > 0
-            );
+            return this.palavras_chave_selecionadas.length > 0;
         }
     },
     methods: {
+        clearConfigInfo(){
+            window.localStorage.setItem('default_config','');
+            this.getConfigInfo();
+        },
         setConfigInfo(){
+            let fonte = this.fontes;
+            if (this.fontes_selecionadas.length > 0)
+                fonte = this.fontes_selecionadas;
+            let nova_palavras = {}
+            if(this.palavras_chave_selecionadas.length > 0){
+                this.palavras_chave_selecionadas.forEach(elem => {
+                    nova_palavras[elem] = this.palavras_chave[elem];
+                });
+            }else{
+                nova_palavras = {...this.palavras_chave};
+            }
             let config = {
-                'fontes_de_noticia':
-                (this.fontes_selecionadas.lenght > 0
-                    ? this.fontes_selecionadas
-                    : this.fontes),
-                'palavras_chave':
-                (this.palavras_chave_selecionadas.lenght > 0
-                    ? {...this.palavras_chave_selecionadas.map(x => {return {[x]:{...this.palavras_chave[x]}}}) }
-                    : {...this.palavras_chave})
+                'fontes_de_noticia': fonte,
+                'palavras_chave': {...nova_palavras }
             };
             window.localStorage.setItem('default_config',JSON.stringify(config));
             this.getConfigInfo();
@@ -97,9 +108,6 @@ export default {
             let arquivo = JSON.parse(window.localStorage.getItem('default_config'));
             this.fontes = arquivo.fontes_de_noticia || [];
             this.palavras_chave = arquivo.palavras_chave || [];
-            // this.palavras_chave.forEach(elem =>{
-            //     this.teste.push(Number(elem.weight));
-            // });
         },
         handleAddPalavra(palavra_chave) {
             this.palavras_chave = {...this.palavras_chave, ...palavra_chave };
