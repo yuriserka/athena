@@ -8,6 +8,7 @@
             <i><p><strong>Atenção</strong>: Por usar o navegador como local de armazenamento,
                 limpar os dados do navegador limpa a lista de configurações</p></i>
             <br/>
+
             <PalavrasChave
                 :palavras_chave="palavras_chave"
                 @add-p="handleAddPalavra"
@@ -22,10 +23,11 @@
                 @slct-f="handleSlctFonte"
             />
             <br />
-            <h2 class="title" v-if="okToSearch || fontes_selecionadas.length > 0">Arquivo Final</h2>
+            <h2 class="title">Arquivo Final</h2>
             <b-table
-                v-if="okToSearch"
-                :data="palavras_chave_selecionadas"
+                :data="this.palavras_chave_selecionadas.lenght > 0
+                        ? palavras_chave_selecionadas
+                        : Object.keys(palavras_chave)"
             >
             <template slot-scope="props">
                 <b-table-column field="keyword" label="Palavra Chave">{{ props.row }}</b-table-column>
@@ -33,13 +35,14 @@
                 <b-table-column field="synonyms" label="Sinônimos">{{ palavras_chave[props.row].synonyms.join(', ') }}</b-table-column>
             </template>
             </b-table>
-            <p class="content" v-if="fontes_selecionadas.length > 0">
+            <p class="content">
                 <strong>Fontes Selecionadas: </strong>
-                {{fontes_selecionadas.map(x => "\"" + x + "\"").join(', ') }}
+                {{(fontes_selecionadas.length > 0
+                    ? fontes_selecionadas
+                    : fontes).map(x => "\"" + x + "\"").join(', ') }}
             </p>
             <b-button
-                :class="okToSearch ? 'is-success' : 'is-danger'"
-                :disabled="!okToSearch"
+                :class="'is-success'"
                 @click="setConfigInfo"
             >Atualizar</b-button>
         </div>
@@ -69,25 +72,31 @@ export default {
     },
     computed: {
         okToSearch() {
-        return (
-            this.palavras_chave_selecionadas.length > 0 ||
-            this.fontes_selecionadas.length > 0
-        );
+            return (
+                this.palavras_chave_selecionadas.length > 0 ||
+                this.fontes_selecionadas.length > 0
+            );
         }
     },
     methods: {
         setConfigInfo(){
-            let config = {'fontes_de_noticia':this.fontes_selecionadas,'palavras_chave':{...this.palavras_chave_selecionadas}};
+            let config = {
+                'fontes_de_noticia':
+                (this.fontes_selecionadas.lenght > 0
+                    ? this.fontes_selecionadas
+                    : this.fontes),
+                'palavras_chave':
+                (this.palavras_chave_selecionadas.lenght > 0
+                    ? {...this.palavras_chave_selecionadas.map(x => {return {[x]:{...this.palavras_chave[x]}}}) }
+                    : {...this.palavras_chave})
+            };
             window.localStorage.setItem('default_config',JSON.stringify(config));
-            this.fontes = this.fontes_selecionadas;
-            this.palavras_chave = palavras_chave_selecionadas;
-            this.palavras_chave_selecionadas = [];
-            this.fontes_selecionadas = [];
+            this.getConfigInfo();
         },
         getConfigInfo() {
-            let config = JSON.parse(window.localStorage.getItem('default_config'));
-            this.fontes = config.fontes_de_noticia || [];
-            this.palavras_chave = config.palavras_chave || [];
+            let arquivo = JSON.parse(window.localStorage.getItem('default_config'));
+            this.fontes = arquivo.fontes_de_noticia || [];
+            this.palavras_chave = arquivo.palavras_chave || [];
         },
         handleAddPalavra(palavra_chave) {
             this.palavras_chave = {...this.palavras_chave, ...palavra_chave };
