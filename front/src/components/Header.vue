@@ -4,7 +4,11 @@
       <div class="navbar-brand">
         <a class="navbar-item" href="/">ATHENA</a>
       </div>
-      <div id="navMenuColorblack-example" class="navbar-menu">
+      <ul class="linha">
+        <a class="navbar-item" href="/">busca</a>
+        <a class="navbar-item" href="/help">ajuda</a>
+        <a class="navbar-item" href="/config">configurações</a>
+      <!-- <div id="navMenuColorblack-example" class="navbar-menu">
         <div class="navbar-start">
           <div class="navbar-item has-dropdown is-hoverable">
             <a class="navbar-link" href="/">busca</a>
@@ -17,7 +21,8 @@
               <a class="navbar-item" href="/config">configurações</a>
             </div>
           </div>
-        </div>
+        </div> -->
+      </ul>
         <div class="navbar-end">
           <div class="navbar-item">
             <div class="field is-grouped">
@@ -29,7 +34,7 @@
             </div>
           </div>
         </div>
-      </div>
+      <!-- </div> -->
     </nav>
     <Title />
   </div>
@@ -48,4 +53,8 @@ export default {
 </script>
 
 <style scoped>
+.linha{
+  display: flex;
+  flex-direction: row;
+}
 </style>
