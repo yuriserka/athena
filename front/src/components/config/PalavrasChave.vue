@@ -157,12 +157,12 @@ export default {
       nova_palavra: {
         nome: "",
         sinonimos: "",
-        peso: 1
+        peso: 5
       },
       default_nova_palavra: {
         nome: "",
         sinonimos: "",
-        peso: 1
+        peso: 5
       },
       modalAddPalavra: false,
       modalRmvPalavra: false,
@@ -172,18 +172,12 @@ export default {
   },
   computed: {
     splitted_nova_palavra_sinonimos() {
-      if (!this.nova_palavra.sinonimos.length) {
+      if (this.nova_palavra.sinonimos.length == 0) {
         return [];
       }
       return this.nova_palavra.sinonimos
         .split(",")
-        .map(s => s.trim())
-        .map(s => {
-          return {
-            nome: s,
-            peso: this.nova_palavra.peso
-          };
-        });
+        .map(s => s.trim());
     },
     mostrar_nome_selecionadas() {
       return this.selecionadas.map(p => p.palavra);
@@ -191,11 +185,11 @@ export default {
   },
   methods: {
     add() {
-      this.nova_palavra_sinonimos = this.splitted_nova_palavra_sinonimos;
+      let sinonimos = this.splitted_nova_palavra_sinonimos;
       this.$emit("add-p", {
         [this.nova_palavra.nome]:{
           weight: this.nova_palavra.peso,
-          synonyms: this.nova_palavra.sinonimos.split(",").map(s => s.trim()),
+          synonyms: sinonimos,
         }
       });
       this.nova_palavra = this.default_nova_palavra;
