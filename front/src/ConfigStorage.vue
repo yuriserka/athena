@@ -25,9 +25,9 @@
             <br />
             <h2 class="title">Arquivo Final</h2>
             <b-table
-                :data="this.palavras_chave_selecionadas.lenght > 0
-                        ? palavras_chave_selecionadas
-                        : Object.keys(palavras_chave)"
+                :data="okToSearch
+                        ? this.palavras_chave_selecionadas
+                        : Object.keys(this.palavras_chave)"
             >
             <template slot-scope="props">
                 <b-table-column field="keyword" label="Palavra Chave">{{ props.row }}</b-table-column>
@@ -97,6 +97,9 @@ export default {
             let arquivo = JSON.parse(window.localStorage.getItem('default_config'));
             this.fontes = arquivo.fontes_de_noticia || [];
             this.palavras_chave = arquivo.palavras_chave || [];
+            // this.palavras_chave.forEach(elem =>{
+            //     this.teste.push(Number(elem.weight));
+            // });
         },
         handleAddPalavra(palavra_chave) {
             this.palavras_chave = {...this.palavras_chave, ...palavra_chave };
