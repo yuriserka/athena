@@ -127,8 +127,12 @@ export default {
       this.noticias_selecionadas = [];
     },
     getConfigInfo() {
-      this.fontes = config.fontes_de_noticia;
-      this.palavras_chave = config.palavras_chave;
+      let config = JSON.parse(window.localStorage.getItem('default_config'));
+      this.fontes = config.fontes_de_noticia || [];
+      this.palavras_chave = config.palavras_chave || [];
+    },
+    setConfigInfo(){
+      window.localStorage.setItem('default_config',JSON.stringify(config));
     },
     enviarNoticias(){
       this.isLoadingLinks = true;
@@ -162,6 +166,7 @@ export default {
     }
   },
   beforeMount() {
+    this.setConfigInfo();
     this.getConfigInfo();
   }
 };
