@@ -63,7 +63,7 @@ import Footer from "./components/Footer";
 import SubHeader from "./components/SubHeader";
 import Configs from "./components/Configs";
 import NewsList from "./components/NewsList";
-import config from "../common/config.json";
+// import config from "../common/config.json";
 
 export default {
   name: "app",
@@ -131,9 +131,6 @@ export default {
       this.fontes = config.fontes_de_noticia || [];
       this.palavras_chave = config.palavras_chave || [];
     },
-    setConfigInfo(){
-      window.localStorage.setItem('default_config',JSON.stringify(config));
-    },
     enviarNoticias(){
       this.isLoadingLinks = true;
 
@@ -166,7 +163,6 @@ export default {
     }
   },
   beforeMount() {
-    this.setConfigInfo();
     this.getConfigInfo();
   }
 };
