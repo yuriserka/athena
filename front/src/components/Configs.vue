@@ -54,4 +54,8 @@ export default {
 .espaco {
   margin-bottom: 50px;
 }
+.container {
+  padding-left: 10%;
+  padding-right: 10%;
+}
 </style>
