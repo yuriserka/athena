@@ -11,10 +11,10 @@
             <div class="navbar-dropdown">
               <a
                 class="navbar-item"
-                href="javascript:void(0);"
+                href="/help"
                 onclick="javascript:introJs().start();"
-              >tutorial</a>
-              <a class="navbar-item" href="/configuracoes">configurações</a>
+              >ajuda</a>
+              <a class="navbar-item" href="/config">configurações</a>
             </div>
           </div>
         </div>
