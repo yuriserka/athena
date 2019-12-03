@@ -2,7 +2,7 @@
   <div class="container">
     <PalavrasChave
       :palavras_chave="palavras_chave"
-      :showList=true
+      :showList="true"
       @add-p="handleAddPalavra"
       @rmv-p="handleRmvPalavra"
       @slct-p="handleSlctPalavra"
@@ -10,7 +10,7 @@
     <div class="espaco" />
     <Fontes
       :fontes="fontes"
-      :showList=true
+      :showList="true"
       @add-f="handleAddFonte"
       @rmv-f="handleRmvFonte"
       @slct-f="handleSlctFonte"

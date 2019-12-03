@@ -27,12 +27,10 @@
         @click="enviarNoticias"
       >Enviar notícias selecionadas ao banco de dados</b-button>
     </div>
-    <div
-      v-if="links.length > 0"
-    >
+    <div v-if="links.length > 0">
       <h2
-            class="title is-4 is-spaced bd-anchor-title"
-      > {{links.length}} notícias inseridas com sucesso{{errors > 0 ? `, mas ocorreram ${errors} erros` : ''}}</h2>
+        class="title is-4 is-spaced bd-anchor-title"
+      >{{links.length}} notícias inseridas com sucesso{{errors > 0 ? `, mas ocorreram ${errors} erros` : ''}}</h2>
       <b-table
         :data="links.map((e,idx)=>{return {title:noticias_selecionadas[idx].title,link:e}})"
         :loading="isLoadingLinks"
@@ -45,7 +43,9 @@
         aria-current-label="Página atual"
       >
         <template slot-scope="props">
-          <b-table-column field="link" label="Links"><a :href="props.row.link" target="_blank">{{props.row.title}}</a></b-table-column>
+          <b-table-column field="link" label="Links">
+            <a :href="props.row.link" target="_blank">{{props.row.title}}</a>
+          </b-table-column>
         </template>
       </b-table>
     </div>
@@ -99,12 +99,15 @@ export default {
   },
   methods: {
     handleAddPalavra(palavra_chave) {
-      this.palavras_chave = {...this.palavras_chave, ...palavra_chave };
+      this.palavras_chave = { ...this.palavras_chave, ...palavra_chave };
     },
     handleRmvPalavra(palavras_chave_selecionadas) {
-      this.palavras_chave = Object.keys(this.palavras_chave).filter(
-        word => !palavras_chave_selecionadas.includes(word)
-      ).reduce((acc,key) => ({...acc, [key]: {...this.palavras_chave[key]}}),{});
+      this.palavras_chave = Object.keys(this.palavras_chave)
+        .filter(word => !palavras_chave_selecionadas.includes(word))
+        .reduce(
+          (acc, key) => ({ ...acc, [key]: { ...this.palavras_chave[key] } }),
+          {}
+        );
     },
     handleSlctPalavra(palavras_selecionadas) {
       this.palavras_chave_selecionadas = palavras_selecionadas;
@@ -127,22 +130,23 @@ export default {
       this.noticias_selecionadas = [];
     },
     getConfigInfo() {
-      let config = JSON.parse(window.localStorage.getItem('default_config'));
+      let config = JSON.parse(window.localStorage.getItem("default_config"));
       this.fontes = config.fontes_de_noticia || [];
       this.palavras_chave = config.palavras_chave || [];
     },
-    enviarNoticias(){
+    enviarNoticias() {
       this.isLoadingLinks = true;
 
       let news = this.noticias_selecionadas.map(news => {
         news.source = news.source.name;
         news.event = this.palavras_chave_selecionadas;
         let today = new Date();
-        let date = today.getFullYear() + '-';
-        date += (today.getMonth()+1 < 10 ? '0' : '') + (today.getMonth()+1) + '-';
-        date += (today.getDate() < 10 ? '0':'') + today.getDate();
+        let date = today.getFullYear() + "-";
+        date +=
+          (today.getMonth() + 1 < 10 ? "0" : "") + (today.getMonth() + 1) + "-";
+        date += (today.getDate() < 10 ? "0" : "") + today.getDate();
         news.insertionDate = date;
-        [news.country,news.region,news.uf] = ['','',''];
+        [news.country, news.region, news.uf] = ["", "", ""];
         return news;
       });
 
@@ -151,11 +155,14 @@ export default {
 
       let result = [];
       let errs = [];
-      for(const noticia of news){
+      for (const noticia of news) {
         axios
-          .post("http://localhost:8083/api/news",{...noticia })
+          .post("http://localhost:8083/api/news", { ...noticia })
           .then(res => result.push(res.data.link))
-          .catch(err => {errs.push(err);result.push('fail')});
+          .catch(err => {
+            errs.push(err);
+            result.push("fail");
+          });
       }
       this.errors = errs.lenght;
       this.isLoadingLinks = false;

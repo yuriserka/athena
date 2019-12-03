@@ -90,8 +90,14 @@
               >
                 <template slot-scope="props">
                   <b-table-column field="keyword" label="Palavra Chave">{{ props.row }}</b-table-column>
-                  <b-table-column field="weight" label="Pesos">{{ palavras_chave[props.row].weight }}</b-table-column>
-                  <b-table-column field="synonyms" label="Sinônimos">{{ palavras_chave[props.row].synonyms.join(', ') }}</b-table-column>
+                  <b-table-column
+                    field="weight"
+                    label="Pesos"
+                  >{{ palavras_chave[props.row].weight }}</b-table-column>
+                  <b-table-column
+                    field="synonyms"
+                    label="Sinônimos"
+                  >{{ palavras_chave[props.row].synonyms.join(', ') }}</b-table-column>
                 </template>
               </b-table>
             </template>
@@ -151,7 +157,7 @@
 <script>
 export default {
   name: "PalavrasChave",
-  props: ["palavras_chave","showList"],
+  props: ["palavras_chave", "showList"],
   data() {
     return {
       nova_palavra: {
@@ -175,9 +181,7 @@ export default {
       if (this.nova_palavra.sinonimos.length == 0) {
         return [];
       }
-      return this.nova_palavra.sinonimos
-        .split(",")
-        .map(s => s.trim());
+      return this.nova_palavra.sinonimos.split(",").map(s => s.trim());
     },
     mostrar_nome_selecionadas() {
       return this.selecionadas.map(p => p.palavra);
@@ -187,12 +191,12 @@ export default {
     add() {
       let sinonimos = this.splitted_nova_palavra_sinonimos;
       this.$emit("add-p", {
-        [this.nova_palavra.nome]:{
+        [this.nova_palavra.nome]: {
           weight: this.nova_palavra.peso,
-          synonyms: sinonimos,
+          synonyms: sinonimos
         }
       });
-      this.nova_palavra = {...this.default_nova_palavra};
+      this.nova_palavra = { ...this.default_nova_palavra };
       this.modalAddPalavra = false;
     },
     select() {

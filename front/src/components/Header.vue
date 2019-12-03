@@ -8,7 +8,7 @@
         <a class="navbar-item" href="/">busca</a>
         <a class="navbar-item" href="/help">ajuda</a>
         <a class="navbar-item" href="/config">configurações</a>
-      <!-- <div id="navMenuColorblack-example" class="navbar-menu">
+        <!-- <div id="navMenuColorblack-example" class="navbar-menu">
         <div class="navbar-start">
           <div class="navbar-item has-dropdown is-hoverable">
             <a class="navbar-link" href="/">busca</a>
@@ -21,19 +21,19 @@
               <a class="navbar-item" href="/config">configurações</a>
             </div>
           </div>
-        </div> -->
+        </div>-->
       </ul>
-        <div class="navbar-end">
-          <div class="navbar-item">
-            <div class="field is-grouped">
-              <p class="control">
-                <a href="https://github.com/yuriserka/athena" target="_blank">
-                  <i class="fab fa-github"></i>
-                </a>
-              </p>
-            </div>
+      <div class="navbar-end">
+        <div class="navbar-item">
+          <div class="field is-grouped">
+            <p class="control">
+              <a href="https://github.com/yuriserka/athena" target="_blank">
+                <i class="fab fa-github"></i>
+              </a>
+            </p>
           </div>
         </div>
+      </div>
       <!-- </div> -->
     </nav>
     <Title />
@@ -53,7 +53,7 @@ export default {
 </script>
 
 <style scoped>
-.linha{
+.linha {
   display: flex;
   flex-direction: row;
 }

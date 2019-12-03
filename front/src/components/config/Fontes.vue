@@ -88,7 +88,7 @@
       <br />
 
       <p class="content" v-if="showList">
-        <b>fontes selecionadas: </b>
+        <b>fontes selecionadas:</b>
         {{selecionadas.map(x => "\"" + x + "\"").join(', ') }}
       </p>
     </div>
@@ -98,7 +98,7 @@
 <script>
 export default {
   name: "Fontes",
-  props: ["fontes","showList"],
+  props: ["fontes", "showList"],
   data() {
     return {
       selecionadas: [],

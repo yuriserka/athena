@@ -109,9 +109,9 @@ function score_news(article, params) {
     const articleLenght =
         title && content
             ? [title, content].reduce(
-                  (acc, elem) => acc + elem.split(' ').length,
-                  0
-              )
+                (acc, elem) => acc + elem.split(' ').length,
+                0
+            )
             : 100000;
     // NOTE: To have a title and content is something important for a article,
     //       this fact will be reflected in score. If it doesn't, it'll receive
