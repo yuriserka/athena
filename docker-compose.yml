@@ -1,0 +1,16 @@
+version: "3"
+
+services:
+  back:
+    build: ./api
+    command: bash start.sh
+    ports:
+      - "8083:8083"
+
+  front:
+    depends_on:
+      - "back"
+    build: ./front
+    command: bash start.sh
+    ports:
+      - "3000:3000"
