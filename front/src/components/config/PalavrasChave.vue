@@ -205,7 +205,7 @@ export default {
     },
     remove() {
       this.selecionadas = this.selecionadas.filter(
-        ({ palavra }) => !this.selecionadas_para_remover.includes(palavra)
+        palavra => !this.selecionadas_para_remover.includes(palavra)
       );
       this.$emit("rmv-p", this.selecionadas_para_remover);
       this.select();
