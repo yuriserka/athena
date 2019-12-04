@@ -29,7 +29,7 @@ router.get('/', async (req, res) => {
     }
     res.json(data);
 });
-
+/* Método para fins de debugging e limpeza do banco
 router.delete('/', async (req, res) => {
     let result = [];
     await axios({
@@ -52,7 +52,7 @@ router.delete('/', async (req, res) => {
     }
     res.json('fim');
 });
-
+ */
 router.post('/', async (req, res) => {
     /* NOTE:
         ao utilizar esse método, o header Authorization não é enviado
@@ -67,7 +67,7 @@ router.post('/', async (req, res) => {
         }) */
     axios({
         method: 'post',
-        url: 'http://localhost:8080/noticias',
+        url: 'http://164.41.147.219:8080/noticias',
         data: { ...req.body },
         headers: {
             Authorization: 'Basic ZGV2OmFwaWtleQ==',
