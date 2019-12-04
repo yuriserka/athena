@@ -1,10 +1,25 @@
 <template>
-  <div></div>
+  <div>
+    <Header />
+    <div class="section">
+      <b-message type="is-danger" has-icon>Error 404: Rota não encontrada</b-message>
+    </div>
+  </div>
 </template>
 
 <script>
-export default {};
+import Header from "./components/Header";
+
+export default {
+  name: "NotFound",
+  components: {
+    Header
+  }
+};
 </script>
 
-<style>
+<style scoped>
+.fonte-gigante {
+  font-size: 70px;
+}
 </style>
