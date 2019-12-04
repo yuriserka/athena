@@ -72,6 +72,33 @@
           class="title is-4 is-spaced bd-anchor-title"
           style="color: purple;"
         >Entendendo o ranqueamento</h2>
+        <span class="fonte-grande">
+          Em poucas palavras, o ranqueamento pode ser descrito da seguinte forma:
+          <br/><br/>
+          <div style="display: inline-block; margin-left: 25px;">
+            Cada notícia recebe uma nota baseada na
+            frequência dos termos de busca,
+            e sinônimos, em seu conteúdo;
+          </div>
+          <br/><br/>
+          O cálculo da nota de cada noticia leva em consideração:
+          <br/><br/>
+          <div style="display: inline-block; margin-left: 25px;">
+            <ul>
+              <li>N : número de repetições</li>
+              <li>P : peso do termo de busca</li>
+              <li>L : comprimento, quantidade de letras, da notícia</li>
+            </ul>
+          </div>
+          <br/><br/>
+          Contabilizado o número de repetições
+          de cada termo de busca, ponderado-se
+          de acordo com seu respectivo peso e o
+          resultado é normalizado utilizando
+          comprimento da notícia, em outras palavras,
+          a nota de um artigo é a <strong> soma ponderada
+          das frequências dos termos de busca </strong>.
+        </span>
       </div>
     </div>
   </div>
