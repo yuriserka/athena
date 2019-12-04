@@ -57,15 +57,6 @@
       </b-modal>
     </section>
     <div class="block">
-      <b-checkbox
-        v-for="(fonte, index) in fontes"
-        @change.native="select"
-        v-model="selecionadas"
-        :native-value="fonte"
-        :key="index"
-      >{{fonte}}</b-checkbox>
-      {{' '}}
-      <br />
       <a @click="selectAll">
         <b-icon
           pack="fas"
@@ -75,8 +66,9 @@
           style="color:green;"
         ></b-icon>
       </a>
-
-      <a @click="unSelectAll">
+      <a
+        style="margin-right: 0.5rem;"
+        @click="unSelectAll">
         <b-icon
           pack="fas"
           icon="window-close"
@@ -85,6 +77,13 @@
           style="color:red;"
         ></b-icon>
       </a>
+      <b-checkbox
+        v-for="(fonte, index) in fontes"
+        @change.native="select"
+        v-model="selecionadas"
+        :native-value="fonte"
+        :key="index"
+      >{{fonte}}</b-checkbox>
       <br />
       <br />
 

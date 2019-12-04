@@ -116,15 +116,6 @@
       </b-modal>
     </section>
     <div class="block">
-      <b-checkbox
-        v-for="(_,index) in palavras_chave"
-        @change.native="select"
-        v-model="selecionadas"
-        :native-value="index"
-        :key="index"
-      >{{ index }}</b-checkbox>
-      {{' '}}
-      <br />
       <a @click="selectAll">
         <b-icon
           pack="fas"
@@ -134,8 +125,9 @@
           style="color:green;"
         ></b-icon>
       </a>
-
-      <a @click="unSelectAll">
+      <a
+        style="margin-right: 0.5rem;"
+        @click="unSelectAll">
         <b-icon
           pack="fas"
           icon="window-close"
@@ -144,9 +136,15 @@
           style="color:red;"
         ></b-icon>
       </a>
+      <b-checkbox
+        v-for="(_,index) in palavras_chave"
+        @change.native="select"
+        v-model="selecionadas"
+        :native-value="index"
+        :key="index"
+      >{{ index }}</b-checkbox>
       <br />
       <br />
-
       <p class="content" v-if="showList">
         <b>palavras-chave selecionadas:</b>
         {{ selecionadas.join(', ') }}
