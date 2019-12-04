@@ -5,33 +5,15 @@
         <a class="navbar-item" href="/">ATHENA</a>
       </div>
       <ul class="linha">
-        <a class="navbar-item" href="/">busca</a>
-        <a class="navbar-item" href="/help">ajuda</a>
-        <a class="navbar-item" href="/config">configurações</a>
-        <!-- <div id="navMenuColorblack-example" class="navbar-menu">
-        <div class="navbar-start">
-          <div class="navbar-item has-dropdown is-hoverable">
-            <a class="navbar-link" href="/">busca</a>
-            <div class="navbar-dropdown">
-              <a
-                class="navbar-item"
-                href="/help"
-                onclick="javascript:introJs().start();"
-              >ajuda</a>
-              <a class="navbar-item" href="/config">configurações</a>
-            </div>
-          </div>
-        </div>-->
+        <a class="navbar-item have-hover" href="/" style="color: white;">Busca</a>
+        <a class="navbar-item have-hover" href="/help" style="color: white;">Ajuda</a>
+        <a class="navbar-item have-hover" href="/config" style="color: white;">Configurações</a>
       </ul>
       <div class="navbar-end">
         <div class="navbar-item">
-          <div class="field is-grouped">
-            <p class="control">
-              <a href="https://github.com/yuriserka/athena" target="_blank">
-                <i class="fab fa-github"></i>
-              </a>
-            </p>
-          </div>
+          <a href="https://github.com/yuriserka/athena" target="_blank">
+            <i class="fab fa-github"></i>
+          </a>
         </div>
       </div>
       <!-- </div> -->
@@ -56,5 +38,8 @@ export default {
 .linha {
   display: flex;
   flex-direction: row;
+}
+.have-hover:hover {
+  background-color: slateblue;
 }
 </style>

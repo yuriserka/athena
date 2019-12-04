@@ -124,6 +124,7 @@
         :key="index"
       >{{ index }}</b-checkbox>
       {{' '}}
+      <br />
       <a @click="selectAll">
         <b-icon
           pack="fas"
@@ -137,7 +138,7 @@
       <a @click="unSelectAll">
         <b-icon
           pack="fas"
-          icon="trash"
+          icon="window-close"
           size="is-medium"
           title="Deselecionar todas as fontes."
           style="color:red;"

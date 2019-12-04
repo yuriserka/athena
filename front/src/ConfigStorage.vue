@@ -4,13 +4,15 @@
     <div class="section">
       <div class="container">
         <h1 class="title">Configurações</h1>
-        <p>Insira e modifique as configurações da busca</p>
-        <i>
-          <p>
+        <h2 class="title is-4 is-spaced bd-anchor-title" style="color: purple;">
+          <p>Insira e modifique as configurações da busca</p>
+        </h2>
+        <b-notification type="is-warning" has-icon aria-close-label="Close notification">
+          <span class="fonte-grande">
             <strong>Atenção</strong>: Por usar o navegador como local de armazenamento,
             limpar os dados do navegador limpa a lista de configurações
-          </p>
-        </i>
+          </span>
+        </b-notification>
         <br />
         <PalavrasChave
           :palavras_chave="palavras_chave"
@@ -57,7 +59,7 @@
           style="margin-left: 5em;"
           :class="'is-warning'"
           @click="resetConfigInfo"
-        >Recuperar Padrões</b-button>
+        >Restaurar Padrões</b-button>
       </div>
     </div>
   </div>
@@ -69,6 +71,7 @@ import PalavrasChave from "./components/config/PalavrasChave";
 import Fontes from "./components/config/Fontes";
 
 export default {
+  name: "ConfigStorage",
   components: {
     Header,
     PalavrasChave,
@@ -192,5 +195,8 @@ export default {
 };
 </script>
 
-<style>
+<style scoped>
+.fonte-grande {
+  font-size: 18px;
+}
 </style>
