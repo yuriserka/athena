@@ -30,9 +30,7 @@
         <br />
         <h2 class="title">Arquivo Final</h2>
         <b-table
-          :data="okToSearch
-                        ? this.palavras_chave_selecionadas
-                        : Object.keys(this.palavras_chave)"
+          :data="(this.palavras_chave_selecionadas.length > 0) ? (this.palavras_chave_selecionadas) : Object.keys(this.palavras_chave)"
         >
           <template slot-scope="props">
             <b-table-column field="keyword" label="Palavra Chave">{{ props.row }}</b-table-column>
@@ -81,19 +79,9 @@ export default {
     return {
       fontes: [],
       palavras_chave: {},
-      temp1: [],
-      temp2: [],
       palavras_chave_selecionadas: [],
       fontes_selecionadas: []
     };
-  },
-  computed: {
-    okToSearch() {
-      return (
-        this.palavras_chave_selecionadas.length > 0 &&
-        this.fontes_selecionadas.length > 0
-      );
-    }
   },
   methods: {
     clearConfigInfo() {
